@@ -16,7 +16,8 @@
 		27FA719A1E6270180070A426 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27FA71981E6270180070A426 /* LaunchScreen.storyboard */; };
 		27FA71A51E6270180070A426 /* BreathalyserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71A41E6270180070A426 /* BreathalyserTests.m */; };
 		27FA71B01E6270180070A426 /* BreathalyserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71AF1E6270180070A426 /* BreathalyserUITests.m */; };
-		27FA71BF1E6270530070A426 /* NuweScoreCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */; };
+		27FA71C01E627A490070A426 /* NuweScoreCharts.framework in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */; };
+		27FA71C11E6292850070A426 /* NuweScoreCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FA71BF1E6270530070A426 /* NuweScoreCharts.framework in Frameworks */,
+				27FA71C11E6292850070A426 /* NuweScoreCharts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FA71C01E627A490070A426 /* NuweScoreCharts.framework in Sources */,
 				27FA718F1E6270170070A426 /* ViewController.m in Sources */,
 				27FA718C1E6270170070A426 /* AppDelegate.m in Sources */,
 				27FA71891E6270170070A426 /* main.m in Sources */,
@@ -373,6 +375,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -420,6 +423,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -448,6 +452,7 @@
 				);
 				INFOPLIST_FILE = Breathalyser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sin.Breathalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -464,6 +469,7 @@
 				);
 				INFOPLIST_FILE = Breathalyser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sin.Breathalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
