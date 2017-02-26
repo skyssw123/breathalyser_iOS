@@ -20,11 +20,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    //[self.label setFont:[UIFont fontWithName:@"System" size:1000]];
+    
+    [self updateBACValue];
+    
     NUBarChart* BarChart = nil;
     
     [BarChart setupWithFrame:BarChart.frame];
     [BarChart setBarDataSource:self];
     [BarChart setBarDelegate:self];
+}
+
+-(void)updateBACValue
+{
+    self.bacValue = [self randomFloatBetween:0.0 and:0.19];
+    self.label.text = [NSString stringWithFormat:@"%.3f %%", self.bacValue];
 }
 
 - (BOOL)shouldAutorotate
@@ -61,56 +71,11 @@
 {
     // initialize part ******************************* */
     
-    [BigDialChart setupWithCount:3 TotalValue:100];
+    [BigDialChart setupWithCount:1 TotalValue:190];
     [BigDialChart setChartDataSource:self];
     [BigDialChart setChartDelegate:self];
     [BigDialChart reloadDialWithAnimation:YES];
     
-    /* ************************************************* */
-    
-    // initialize part ******************************* */
-    
-    [TopDialChart1 setupWithCount:4 TotalValue:100];
-    [TopDialChart1 setChartDataSource:self];
-    [TopDialChart1 setChartDelegate:self];
-    [TopDialChart1 reloadDialWithAnimation:YES];
-    
-    /* ************************************************* */
-    
-    // initialize part ******************************* */
-    
-    [TopDialChart2 setupWithCount:5 TotalValue:100];
-    [TopDialChart2 setChartDataSource:self];
-    [TopDialChart2 setChartDelegate:self];
-    [TopDialChart2 reloadDialWithAnimation:YES];
-    
-    /* ************************************************* */
-    
-    // initialize part ******************************* */
-    
-    [BottomDialChart1 setupWithCount:1 TotalValue:100 LineWidth:10];
-    [BottomDialChart1 setChartDataSource:self];
-    [BottomDialChart1 setChartDelegate:self];
-    [BottomDialChart1 reloadDialWithAnimation:YES];
-    
-    /* ************************************************* */
-    
-    // initialize part ******************************* */
-    
-    [BottomDialChart2 setupWithCount:2 TotalValue:100];
-    [BottomDialChart2 setChartDataSource:self];
-    [BottomDialChart2 setChartDelegate:self];
-    [BottomDialChart2 reloadDialWithAnimation:YES];
-    
-    /* ************************************************* */
-    // initialize part ******************************* */
-    
-    [BottomDialChart3 setupWithCount:1 TotalValue:100];
-    [BottomDialChart3 setChartDataSource:self];
-    [BottomDialChart3 setChartDelegate:self];
-    [BottomDialChart3 reloadDialWithAnimation:YES];
-    
-    /* ************************************************* */
     
 }
 
@@ -122,9 +87,22 @@
 #pragma NUDialChart Datasource
 - (NSNumber*) dialChart:(NUDialChart*) dialChart valueOfCircleAtIndex:(int) _index
 {
-    NSInteger randomNumber = arc4random() % 100;
-    return [NSNumber numberWithInteger:randomNumber];
+    
+    //my input
+    //randomNumber = 50;
+    
+    int a = self.bacValue * 1000;
+    return [NSNumber numberWithInteger: a];
 }
+
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 
 /* Get a color of specific dial by index
  @param : Index of specific dial
@@ -132,8 +110,28 @@
  */
 - (UIColor* ) dialChart:(NUDialChart*) dialChart colorOfCircleAtIndex:(int) _index
 {
-    return [UIColor colorWithRed:(float)(arc4random() % 255) / 255.0f green:(float)(arc4random() % 255) / 255.0f blue:(float)(arc4random() % 255) / 255.0f alpha:1.0f];
+    //my input
+    //return [UIColor blackColor];
+    if(_index == 0 && self.bacValue > 0.07)
+        return [UIColor redColor];
+    
+    
+    else if(_index == 0 && self.bacValue <= 0.07)
+        return [self colorFromHexString:@"#006400"];
+    
+    //if(_index == 1)
+    //    return [UIColor yellowColor];
+    
+    //if(_index == 2)
+    //    return [UIColor whiteColor];
+    
+    
+    
+    //return [UIColor colorWithRed:(float)(arc4random() % 255) / 255.0f green:(float)(arc4random() % 255) / 255.0f blue:(float)(arc4random() % 255) / 255.0f alpha:1.0f];
+    
+    return [UIColor greenColor];
 }
+
 
 /* Get a text of specific dial by index
  @param : Index of specific dial
@@ -141,6 +139,12 @@
  */ // It's for just Nutribu
 - (NSString* ) dialChart:(NUDialChart*) dialChart textOfCircleAtIndex:(int) _index
 {
+    //my input
+    if(_index == 0 && self.bacValue > 0.07)
+    return [NSString stringWithFormat:@"  You are not allowed to drive.."];
+    
+    else
+        return NULL;
     return [NSString stringWithFormat:@"test message"];
 }
 
@@ -167,8 +171,8 @@
  */
 - (BOOL) dialChart:(NUDialChart*) dialChart defaultCircleAtIndex:(int) _index
 {
-    if ( _index == 1 )
-        return YES;
+    //if ( _index == 3 )
+    //    return YES;
     
     return NO;
 }
@@ -179,16 +183,20 @@
  */
 - (int) nuscoreInDialChart:(NUDialChart*) dialChart
 {
+    //my
+    return 0.08;
     return (arc4random() % 100);
 }
 
 - (UIColor*) centerBackgroundColorInDialChart:(NUDialChart *)dialChart
 {
+    return [UIColor blackColor];
     return [UIColor blueColor];
 }
 
 - (UIColor*) centerTextColorInDialChart:(NUDialChart *)dialChart
 {
+    return [UIColor blackColor];
     return [UIColor whiteColor];
 }
 
@@ -197,15 +205,9 @@
 
 - (void) touchNuDialChart:(NUDialChart *)chart
 {
-    if ( chart == BigDialChart ){
-        [BigDialChart reloadDialWithAnimation:YES];
-        [TopDialChart1 reloadDialWithAnimation:YES];
-        [TopDialChart2 reloadDialWithAnimation:YES];
-        
-        [BottomDialChart1 reloadDialWithAnimation:YES];
-        [BottomDialChart2 reloadDialWithAnimation:YES];
-        [BottomDialChart3 reloadDialWithAnimation:YES];
-    }
+    //if ( chart == BigDialChart ){
+    //    [BigDialChart reloadDialWithAnimation:YES];
+    //}
 }
 
 #pragma mark - NUBarChart Delegates and DataSource
@@ -234,4 +236,13 @@
     return 90;
 }
 
+- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
+    float diff = bigNumber - smallNumber;
+    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+
+- (IBAction)buttonPressed:(UIButton *)sender {
+    [self updateBACValue];
+    [BigDialChart reloadDialWithAnimation:YES];
+}
 @end

@@ -21,20 +21,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUD-Np-bFR" customClass="NUDialChart">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUD-Np-bFR" customClass="NUDialChart">
                                 <rect key="frame" x="62" y="208" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="K1s-rZ-3sn"/>
+                                    <constraint firstAttribute="height" constant="250" id="lAs-t4-6wm"/>
+                                </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqV-8a-KTc" userLabel="hihi">
+                                <rect key="frame" x="166" y="323" width="63" height="21"/>
+                                <color key="backgroundColor" red="0.036016419529914856" green="0.0077338861301541328" blue="0.0075175282545387745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <color key="textColor" red="0.99607473611831665" green="0.99220293760299683" blue="0.99199241399765015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdQ-fc-eqP">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.043915465474128723" green="0.011639841832220554" blue="0.011390644125640392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Mup-g0-yFz"/>
+                                    <constraint firstAttribute="width" constant="220" id="Sxy-y3-3nu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="  Measure  ">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nij-Bz-j3w"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Breathalyser" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsu-2c-2Xy">
+                                <rect key="frame" x="57.5" y="79" width="260" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="C7D-Tj-I1N"/>
+                                    <constraint firstAttribute="height" constant="49" id="yhs-B8-VSH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="43"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KUD-Np-bFR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B1g-Ci-qx2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EdQ-fc-eqP" secondAttribute="bottom" constant="60" id="Cq9-KC-IAg"/>
+                            <constraint firstItem="EdQ-fc-eqP" firstAttribute="centerX" secondItem="KUD-Np-bFR" secondAttribute="centerX" id="DdO-Jy-RKp"/>
+                            <constraint firstItem="Tsu-2c-2Xy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="59" id="GhS-qH-q3m"/>
+                            <constraint firstItem="gqV-8a-KTc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HrT-xo-D0y"/>
+                            <constraint firstItem="KUD-Np-bFR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="V1o-1E-B9t"/>
+                            <constraint firstItem="gqV-8a-KTc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i4k-bw-mcc"/>
+                            <constraint firstItem="EdQ-fc-eqP" firstAttribute="centerX" secondItem="Tsu-2c-2Xy" secondAttribute="centerX" id="iM6-SO-5I8"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="BigDialChart" destination="KUD-Np-bFR" id="qgg-jz-Oy0"/>
+                        <outlet property="label" destination="gqV-8a-KTc" id="Sfs-tR-oAZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="85.599999999999994" y="42.728635682158924"/>
         </scene>
     </scenes>
 </document>
