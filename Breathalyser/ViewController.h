@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <NuweScoreCharts/NuweScoreCharts.h>
+#import "Breathalyser-Swift.h"
 
-@interface ViewController : UIViewController <NUDialChartDataSource, NUDialChartDelegate, NUBarChartDelegate, NUBarChartDataSource>
+
+@interface ViewController : UIViewController <NUDialChartDataSource, NUDialChartDelegate, NUBarChartDelegate, NUBarChartDataSource, CBCentralManagerDelegate, MqttManagerDelegate, BLEPeripheralDelegate>
 - (IBAction)buttonPressed:(UIButton *)sender;
 
 @property (strong, nonatomic) IBOutlet NUDialChart *BigDialChart;
@@ -22,5 +24,12 @@
 @property (strong, nonatomic) IBOutlet NUDialChart *BottomDialChart3;
 @property(nonatomic, assign) double bacValue;
 @property (strong, nonatomic) IBOutlet NUBarChart *LandBarChart;
+
+
+@property (strong, nonatomic) CBCentralManager* cm;
+@property (strong, nonatomic) dispatch_queue_t cbcmQueue;
+@property (strong, nonatomic) BLEPeripheral* currentPeripheral;
+
+-(void)receiveData:(NSData*)data;
 - (UIColor *)colorFromHexString:(NSString *)hexString;
 @end

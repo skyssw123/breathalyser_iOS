@@ -7,14 +7,16 @@
 //
 
 #import "ViewController.h"
+#import "Breathalyser-Swift.h"
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
-@synthesize BigDialChart, TopDialChart1, TopDialChart2, BottomDialChart1, BottomDialChart2, BottomDialChart3;
-@synthesize LandBarChart;
+//@synthesize BigDialChart, TopDialChart1, TopDialChart2, BottomDialChart1, BottomDialChart2, BottomDialChart3;
+//@synthesize LandBarChart;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,18 +24,260 @@
     
     //[self.label setFont:[UIFont fontWithName:@"System" size:1000]];
     
-    [self updateBACValue];
+    
+    [self updateBACValue:0.0];
     
     NUBarChart* BarChart = nil;
     
     [BarChart setupWithFrame:BarChart.frame];
     [BarChart setBarDataSource:self];
     [BarChart setBarDelegate:self];
+    
+    
+    //Connecting to Bluetooth
+    self.cbcmQueue = dispatch_queue_create("com.sin.Breathalyser", DISPATCH_QUEUE_CONCURRENT);
+    if (self.cm == nil) {
+        self.cm = [[CBCentralManager alloc]initWithDelegate:self queue:(dispatch_get_main_queue())];
+        self.cm.delegate = self;
+    }
+    
+    
+    
+    MqttManager* mqttManager = [MqttManager sharedInstance];
+    mqttManager.connectFromSavedSettings;
+    
+    if (MqttSettings.sharedInstance.isConnected) {
+        mqttManager.delegate = self;
+        mqttManager.connectFromSavedSettings;
+    }
+    
+    //CBPeripheral* peripheral = [CBPeripheral alloc];
+    //peripheral.name = @"Adafruit Bluefruit LE";
+    //peripheral.state = CBPeripheralStateConnected;
+    //peripheral
+    //[self connectPeripheral:(CBPeripheral *)];
 }
 
--(void)updateBACValue
+-(void) viewWillAppear:(BOOL)animated {
+}
+
+//CBCentralManagerDelegate Methods
+-(void) centralManagerDidUpdateState:(CBCentralManager*) central {
+    if(central.state == CBManagerStatePoweredOn)
+    {
+        [self.cm scanForPeripheralsWithServices:nil options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES }];
+    }
+    
+}
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *, id> *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    self.bacValue = [self randomFloatBetween:0.0 and:0.19];
+    if([peripheral.name  isEqual: @"Adafruit Bluefruit LE"])
+    {
+        peripheral.delegate = self;
+        [self connectPeripheral:peripheral];
+        
+    }
+    
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    if (error) {
+        NSLog(@"Error reading characteristics: %@", [error localizedDescription]);
+        return;
+    }
+    
+    if (characteristic.value != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^(void){
+            [self receiveData:characteristic.value];
+        });
+    }
+}
+
+- (void)receiveData:(NSData *)newData
+{
+    NSString* message = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+    if(message != NULL)
+    {
+        double number = [message doubleValue];
+        self.bacValue = number/1000.0;
+        [self updateBACValue:self.bacValue];
+        [self.BigDialChart reloadDialWithAnimation:YES];
+    }
+}
+
+- (void)sendUartMessage:(NSString*)message
+{
+    // MQTT publish to TX
+    //MqttSettings* mqttSettings = MqttSettings.sharedInstance;
+//    if(mqttSettings.isPublishEnabled) {
+//        if (mqttSettings.getPublishTopic(MqttSettings.PublishFeed.TX.rawValue) != NULL) {
+//            let qos = mqttSettings.getPublishQos(MqttSettings.PublishFeed.TX.rawValue)
+//            MqttManager.sharedInstance.publish(message as String, topic: topic, qos: qos)
+//        }
+//    }
+    
+    // Send to uart
+    //if (!wasReceivedFromMqtt || mqttSettings.subscribeBehaviour == .Transmit) {
+    NSData* data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    if(self.currentPeripheral == nil)
+        return;
+    
+    [self.currentPeripheral writeRawData:data];
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
+    
+    if (error) {
+        NSLog(@"Error discovering services: %@", [error localizedDescription]);
+        return;
+    }
+    // Loop through the newly filled peripheral.services array, just in case there's more than one.
+    for (CBService *service in peripheral.services) {
+        [peripheral discoverCharacteristics:nil forService:service];
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
+    
+    if (error) {
+        NSLog(@"Error changing notification state: %@", error.localizedDescription);
+    }
+    
+    // Notification has started
+    if (characteristic.isNotifying) {
+        NSLog(@"Notification began on %@", characteristic);
+    }
+}
+
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral{
+    peripheral.delegate = self;
+    [peripheral discoverServices:nil];
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
+    
+    // Deal with errors (if any)
+    if (error) {
+        NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
+        return;
+    }
+    
+    //self.currentPeripheral = peripheral;
+    
+    
+    // Again, we loop through the array, just in case.
+    for (CBCharacteristic *characteristic in service.characteristics)
+    {
+//        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:dfuServiceUUIDString]] || [characteristic.UUID isEqual:[CBUUID UUIDWithString:dfuControlPointCharacteristicUUIDString]] ||
+//            [characteristic.UUID isEqual:[CBUUID UUIDWithString:dfuPacketCharacteristicUUIDString]] ||
+//            [characteristic.UUID isEqual:[CBUUID UUIDWithString:dfuVersionCharacteritsicUUIDString]]) {
+            // If it is, subscribe to it
+            //6E400001-B5A3-F393-E0A9-E50E24DCCA9E
+        
+        
+        
+        
+        [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+        
+            //TX
+            if(characteristic != nil && [[characteristic.UUID UUIDString] isEqualToString:[@"6e400002-b5a3-f393-e0a9-e50e24dcca9e" uppercaseString]] )
+            {
+                self.currentPeripheral.txCharacteristic = characteristic;
+                //[peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
+        
+            if(characteristic != nil && [[characteristic.UUID UUIDString] isEqualToString:[@"6e400003-b5a3-f393-e0a9-e50e24dcca9e" uppercaseString]])
+            {
+                
+                self.currentPeripheral.rxCharacteristic = characteristic;
+                //[peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            }
+       // }
+    }
+    
+    peripheral.delegate = self;
+//    if(peripheral.services)
+//    {
+//        [self peripheral:peripheral didDiscoverServices:nil];
+//    }
+//    else
+//    {
+//        [peripheral discoverServices:@[[CBUUID UUIDWithString:@"6e400002-b5a3-f393-e0a9-e50e24dcca9e"]]];
+//    }
+}
+
+
+-(void) connectPeripheral:(CBPeripheral*)peripheral
+{
+        
+        //Check if Bluetooth is enabled
+        if(self.cm.state == CBCentralManagerStatePoweredOff) {
+            return;
+        }
+        else {
+            // Fallback on earlier versions
+        }
+        
+        
+        if (self.cm == nil) {
+            //            println(self.description)
+            return ;
+        }
+        
+        self.cm.stopScan;
+        
+        
+    //Connect
+    self.currentPeripheral = [[BLEPeripheral alloc]initWithPeripheral:peripheral delegate:self];
+    self.currentPeripheral.delegate = self;
+    //self.cm.connectPeripheral(peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: NSNumber(bool:true)])
+    
+    [self.cm connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnDisconnectionKey:[NSNumber numberWithBool:TRUE]}];
+    
+    return;
+}
+
+- (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
+{
+    
+}
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
+{
+    
+}
+
+
+//Mqtt Manager
+-(void) onMqttConnected{
+    
+}
+
+-(void) onMqttDisconnected {
+    
+}
+
+-(void) onMqttMessageReceived:(NSString*) message :(NSString*)topic {
+    int a = 4;
+}
+
+-(void) onMqttError:(NSString*) message {
+    
+}
+
+
+
+
+
+
+
+
+
+-(void)updateBACValue:(float) bacValue
+{
+    self.bacValue = bacValue;
     self.label.text = [NSString stringWithFormat:@"%.3f %%", self.bacValue];
 }
 
@@ -56,14 +300,11 @@
     {
         NSLog(@"Portrait!!!");
         
-        LandBarChart.hidden = YES;
     }
     else if (toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight )
     {
         NSLog(@"Landscape!!!");
         
-        LandBarChart.hidden = NO;
-        [LandBarChart reloadDialWithAnimation:YES];
     }
 }
 
@@ -71,10 +312,10 @@
 {
     // initialize part ******************************* */
     
-    [BigDialChart setupWithCount:1 TotalValue:190];
-    [BigDialChart setChartDataSource:self];
-    [BigDialChart setChartDelegate:self];
-    [BigDialChart reloadDialWithAnimation:YES];
+    [self.BigDialChart setupWithCount:1 TotalValue:190];
+    [self.BigDialChart setChartDataSource:self];
+    [self.BigDialChart setChartDelegate:self];
+    [self.BigDialChart reloadDialWithAnimation:YES];
     
     
 }
@@ -160,8 +401,6 @@
  */
 - (BOOL) isShowCenterLabelInDial:(NUDialChart*) dialChart
 {
-    if ( dialChart == BottomDialChart1 || dialChart == BottomDialChart3)
-        return NO;
     return YES;
 }
 
@@ -242,7 +481,8 @@
 }
 
 - (IBAction)buttonPressed:(UIButton *)sender {
-    [self updateBACValue];
-    [BigDialChart reloadDialWithAnimation:YES];
+    [self updateBACValue:0.0];
+    [self sendUartMessage:@"OK"];
+    [self.BigDialChart reloadDialWithAnimation:YES];
 }
 @end

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		277BFEBA1E6E5F6F00F0B1A3 /* MqttManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BFEB91E6E5F6F00F0B1A3 /* MqttManager.swift */; };
+		277BFEBC1E6E5FC100F0B1A3 /* MqttSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BFEBB1E6E5FC100F0B1A3 /* MqttSettings.swift */; };
+		277BFEC21E6E63C200F0B1A3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BFEC11E6E63C200F0B1A3 /* Extensions.swift */; };
+		277BFEC41E6E6A7000F0B1A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BFEC31E6E6A7000F0B1A3 /* Constants.swift */; };
+		277BFEC61E6E6BC700F0B1A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277BFEC51E6E6BC700F0B1A3 /* Foundation.framework */; };
+		277BFEC81E6E6BD100F0B1A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277BFEC71E6E6BD100F0B1A3 /* UIKit.framework */; };
+		277BFECA1E6E6C3500F0B1A3 /* Moscapsule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277BFEC91E6E6C3500F0B1A3 /* Moscapsule.framework */; };
+		277BFED21E6E8A5E00F0B1A3 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277BFED11E6E8A5E00F0B1A3 /* BLEPeripheral.swift */; };
+		277BFED41E6E8D7F00F0B1A3 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277BFED31E6E8D7F00F0B1A3 /* CoreBluetooth.framework */; };
 		27FA71891E6270170070A426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71881E6270170070A426 /* main.m */; };
 		27FA718C1E6270170070A426 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA718B1E6270170070A426 /* AppDelegate.m */; };
 		27FA718F1E6270170070A426 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA718E1E6270170070A426 /* ViewController.m */; };
@@ -18,6 +27,7 @@
 		27FA71B01E6270180070A426 /* BreathalyserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71AF1E6270180070A426 /* BreathalyserUITests.m */; };
 		27FA71C01E627A490070A426 /* NuweScoreCharts.framework in Sources */ = {isa = PBXBuildFile; fileRef = 27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */; };
 		27FA71C11E6292850070A426 /* NuweScoreCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */; };
+		8087AE30C49D63D9F127D70B /* Pods_Breathalyser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 102410A1801E3054C03321F8 /* Pods_Breathalyser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +48,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		102410A1801E3054C03321F8 /* Pods_Breathalyser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Breathalyser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		277BFEB91E6E5F6F00F0B1A3 /* MqttManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttManager.swift; sourceTree = "<group>"; };
+		277BFEBB1E6E5FC100F0B1A3 /* MqttSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttSettings.swift; sourceTree = "<group>"; };
+		277BFEC11E6E63C200F0B1A3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		277BFEC31E6E6A7000F0B1A3 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		277BFEC51E6E6BC700F0B1A3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		277BFEC71E6E6BD100F0B1A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		277BFEC91E6E6C3500F0B1A3 /* Moscapsule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Moscapsule.framework; path = "../../Library/Developer/Xcode/DerivedData/Breathalyser-cbpcdkwnnlrkylbcnqgnpvcbpsyd/Build/Products/Debug-iphoneos/Moscapsule/Moscapsule.framework"; sourceTree = "<group>"; };
+		277BFED01E6E78F300F0B1A3 /* Breathalyser-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Breathalyser-Bridging-Header.h"; sourceTree = "<group>"; };
+		277BFED11E6E8A5E00F0B1A3 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
+		277BFED31E6E8D7F00F0B1A3 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		27FA71841E6270170070A426 /* Breathalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Breathalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FA71881E6270170070A426 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27FA718A1E6270170070A426 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,6 +77,8 @@
 		27FA71AF1E6270180070A426 /* BreathalyserUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BreathalyserUITests.m; sourceTree = "<group>"; };
 		27FA71B11E6270180070A426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NuweScoreCharts.framework; path = Breathalyser/Frameworks/NuweScoreCharts.framework; sourceTree = "<group>"; };
+		42C0EA4158530D4FC6ACCFCA /* Pods-Breathalyser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breathalyser.release.xcconfig"; path = "Pods/Target Support Files/Pods-Breathalyser/Pods-Breathalyser.release.xcconfig"; sourceTree = "<group>"; };
+		874D50B66C31FBFD0B12D048 /* Pods-Breathalyser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Breathalyser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Breathalyser/Pods-Breathalyser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +86,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277BFED41E6E8D7F00F0B1A3 /* CoreBluetooth.framework in Frameworks */,
+				277BFECA1E6E6C3500F0B1A3 /* Moscapsule.framework in Frameworks */,
+				277BFEC81E6E6BD100F0B1A3 /* UIKit.framework in Frameworks */,
+				277BFEC61E6E6BC700F0B1A3 /* Foundation.framework in Frameworks */,
 				27FA71C11E6292850070A426 /* NuweScoreCharts.framework in Frameworks */,
+				8087AE30C49D63D9F127D70B /* Pods_Breathalyser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +112,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		277BFEB61E6E5EBB00F0B1A3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				277BFED11E6E8A5E00F0B1A3 /* BLEPeripheral.swift */,
+				277BFEB71E6E5EDC00F0B1A3 /* MQTT */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		277BFEB71E6E5EDC00F0B1A3 /* MQTT */ = {
+			isa = PBXGroup;
+			children = (
+				277BFEB91E6E5F6F00F0B1A3 /* MqttManager.swift */,
+				277BFEBB1E6E5FC100F0B1A3 /* MqttSettings.swift */,
+				277BFED01E6E78F300F0B1A3 /* Breathalyser-Bridging-Header.h */,
+			);
+			name = MQTT;
+			sourceTree = "<group>";
+		};
 		27FA717B1E6270170070A426 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +139,7 @@
 				27FA71AE1E6270180070A426 /* BreathalyserUITests */,
 				27FA71851E6270170070A426 /* Products */,
 				27FA71BD1E6270530070A426 /* Frameworks */,
+				F9EEAEDB988602E623914CD2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +156,7 @@
 		27FA71861E6270170070A426 /* Breathalyser */ = {
 			isa = PBXGroup;
 			children = (
+				277BFEB61E6E5EBB00F0B1A3 /* Classes */,
 				27FA718A1E6270170070A426 /* AppDelegate.h */,
 				27FA718B1E6270170070A426 /* AppDelegate.m */,
 				27FA718D1E6270170070A426 /* ViewController.h */,
@@ -126,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				27FA71881E6270170070A426 /* main.m */,
+				277BFEC11E6E63C200F0B1A3 /* Extensions.swift */,
+				277BFEC31E6E6A7000F0B1A3 /* Constants.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -151,9 +202,23 @@
 		27FA71BD1E6270530070A426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				277BFED31E6E8D7F00F0B1A3 /* CoreBluetooth.framework */,
+				277BFEC91E6E6C3500F0B1A3 /* Moscapsule.framework */,
+				277BFEC71E6E6BD100F0B1A3 /* UIKit.framework */,
+				277BFEC51E6E6BC700F0B1A3 /* Foundation.framework */,
 				27FA71BE1E6270530070A426 /* NuweScoreCharts.framework */,
+				102410A1801E3054C03321F8 /* Pods_Breathalyser.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9EEAEDB988602E623914CD2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				874D50B66C31FBFD0B12D048 /* Pods-Breathalyser.debug.xcconfig */,
+				42C0EA4158530D4FC6ACCFCA /* Pods-Breathalyser.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,9 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27FA71B41E6270180070A426 /* Build configuration list for PBXNativeTarget "Breathalyser" */;
 			buildPhases = (
+				4AFEFDD50732C7A136692AF7 /* [CP] Check Pods Manifest.lock */,
 				27FA71801E6270170070A426 /* Sources */,
 				27FA71811E6270170070A426 /* Frameworks */,
 				27FA71821E6270170070A426 /* Resources */,
+				B7CF004242287BD0E38B8671 /* [CP] Embed Pods Frameworks */,
+				9A80D8A5E536A27768F5BDD9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -224,6 +292,7 @@
 					27FA71831E6270170070A426 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9E8Y679SCQ;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 					27FA719F1E6270180070A426 = {
@@ -287,16 +356,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4AFEFDD50732C7A136692AF7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9A80D8A5E536A27768F5BDD9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Breathalyser/Pods-Breathalyser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7CF004242287BD0E38B8671 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Breathalyser/Pods-Breathalyser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		27FA71801E6270170070A426 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				27FA71C01E627A490070A426 /* NuweScoreCharts.framework in Sources */,
+				277BFEBA1E6E5F6F00F0B1A3 /* MqttManager.swift in Sources */,
 				27FA718F1E6270170070A426 /* ViewController.m in Sources */,
+				277BFEC21E6E63C200F0B1A3 /* Extensions.swift in Sources */,
 				27FA718C1E6270170070A426 /* AppDelegate.m in Sources */,
 				27FA71891E6270170070A426 /* main.m in Sources */,
+				277BFEBC1E6E5FC100F0B1A3 /* MqttSettings.swift in Sources */,
 				27FA71951E6270180070A426 /* Breathalyser.xcdatamodeld in Sources */,
+				277BFEC41E6E6A7000F0B1A3 /* Constants.swift in Sources */,
+				277BFED21E6E8A5E00F0B1A3 /* BLEPeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +517,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos10.1;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -436,15 +560,20 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos10.1;
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		27FA71B51E6270180070A426 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 874D50B66C31FBFD0B12D048 /* Pods-Breathalyser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -455,13 +584,18 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sin.Breathalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Breathalyser/Breathalyser-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		27FA71B61E6270180070A426 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42C0EA4158530D4FC6ACCFCA /* Pods-Breathalyser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -472,12 +606,15 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sin.Breathalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Breathalyser/Breathalyser-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
 		27FA71B81E6270180070A426 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				INFOPLIST_FILE = BreathalyserTests/Info.plist;
@@ -491,6 +628,7 @@
 		27FA71B91E6270180070A426 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				INFOPLIST_FILE = BreathalyserTests/Info.plist;
@@ -504,6 +642,7 @@
 		27FA71BB1E6270180070A426 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				INFOPLIST_FILE = BreathalyserUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -516,6 +655,7 @@
 		27FA71BC1E6270180070A426 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 9E8Y679SCQ;
 				INFOPLIST_FILE = BreathalyserUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -544,6 +684,7 @@
 				27FA71B61E6270180070A426 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27FA71B71E6270180070A426 /* Build configuration list for PBXNativeTarget "BreathalyserTests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +693,7 @@
 				27FA71B91E6270180070A426 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27FA71BA1E6270180070A426 /* Build configuration list for PBXNativeTarget "BreathalyserUITests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +702,7 @@
 				27FA71BC1E6270180070A426 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
