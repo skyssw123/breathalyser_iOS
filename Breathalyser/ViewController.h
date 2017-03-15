@@ -24,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet NUDialChart *BottomDialChart3;
 @property(nonatomic, assign) double bacValue;
 @property (strong, nonatomic) IBOutlet NUBarChart *LandBarChart;
+@property (strong, nonatomic) UIActivityIndicatorView *indicator;
+@property (strong, nonatomic) UIView* mask;
 
 
 @property (strong, nonatomic) CBCentralManager* cm;

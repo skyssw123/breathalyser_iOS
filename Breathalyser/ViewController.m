@@ -26,7 +26,9 @@
     
     
     [self updateBACValue:0.0];
-    
+    self.indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.indicator.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
+    self.indicator.center = self.view.center;
     NUBarChart* BarChart = nil;
     
     [BarChart setupWithFrame:BarChart.frame];
@@ -97,6 +99,9 @@
 - (void)receiveData:(NSData *)newData
 {
     NSString* message = [[NSString alloc] initWithData:newData encoding:NSUTF8StringEncoding];
+    [self.indicator stopAnimating];
+    [self.indicator removeFromSuperview];
+    [self.mask removeFromSuperview];
     if(message != NULL)
     {
         double number = [message doubleValue];
@@ -482,7 +487,18 @@
 
 - (IBAction)buttonPressed:(UIButton *)sender {
     [self updateBACValue:0.0];
-    [self sendUartMessage:@"OK"];
+    [self sendUartMessage:@"ELEPHANT"];
     [self.BigDialChart reloadDialWithAnimation:YES];
+    
+    
+    self.mask = [[UIView alloc] initWithFrame:self.view.window.frame];
+    [self.mask setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.78]];
+    [self.view addSubview:self.mask];
+    [self.view addSubview:self.indicator];
+    [self.view bringSubviewToFront:self.indicator];
+    self.indicator.hidden = NO;
+    self.indicator.color = [UIColor whiteColor];
+    [self.indicator startAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = TRUE;
 }
 @end
